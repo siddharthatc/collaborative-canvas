@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Collaborative Canvas</title>
+  <link rel="stylesheet" href="./style.css"/>
+</head>
+<body>
+  <!-- Top bar -->
+  <header class="topbar">
+    <div class="brand">🎨 Collab Canvas</div>
+    <div class="toolbar">
+      <button id="undo" title="Undo (Ctrl+Z)">⤺</button>
+      <button id="redo" title="Redo (Ctrl+Y)">⤻</button>
+      <input id="color" type="color" value="#0b63ff" title="Stroke color"/>
+      <input id="size" type="range" min="1" max="48" value="6" title="Stroke width"/>
+      <span class="divider"></span>
+      <span id="latency" title="RTT">– ms</span>
+    </div>
+    <div id="users" class="users"></div>
+  </header>
+
+  <div class="stage">
+    <!-- Left vertical toolbar -->
+    <aside class="side">
+      <button class="tool active" data-tool="brush" title="Brush (B)">🖌️</button>
+      <button class="tool" data-tool="eraser" title="Eraser (E)">🩹</button>
+      <div class="side-divider"></div>
+      <!-- (Bonus-ready placeholders) -->
+      <button class="tool" data-tool="rect" disabled title="Rectangle (bonus)">▭</button>
+      <button class="tool" data-tool="ellipse" disabled title="Ellipse (bonus)">◯</button>
+      <button class="tool" data-tool="text" disabled title="Text (bonus)">T</button>
+    </aside>
+
+    <!-- Canvas area (paper centered) -->
+    <main class="workarea">
+      <div class="paper-wrap">
+        <canvas id="canvas"></canvas>
+        <!-- cursor overlay -->
+        <div id="cursors" class="cursors"></div>
+      </div>
+    </main>
+  </div>
+
+  <template id="user-pill">
+    <div class="user-pill"><span class="dot"></span><span class="name"></span></div>
+  </template>
+
+  <script src="https://cdn.socket.io/4.8.1/socket.io.min.js" crossorigin="anonymous"></script>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
